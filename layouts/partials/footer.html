@@ -1,11 +1,15 @@
 <div id="footer" class="mb-5">
     <hr>
+    {{ if eq .Type "post" }}
+      {{ template "partials/utterances.html" . }}
+    {{ end }}
     {{ if .Site.Params.socialIcons }}
-    <div class="container text-center">
-        {{ range $item := .Site.Params.socialIcons }}
-            <a href="{{ $item.url }}" class="{{ $item.icon }} fa-1x" title="{{ $item.title }}"></a>
-        {{ end }}
-    </div>
+      <hr>
+      <div class="container text-center">
+          {{ range $item := .Site.Params.socialIcons }}
+              <a href="{{ $item.url }}" class="{{ $item.icon }} fa-1x" title="{{ $item.title }}"></a>
+          {{ end }}
+      </div>
     {{ end }}
     {{ with .Site.Params.footer }}
         <div class="container text-center">
