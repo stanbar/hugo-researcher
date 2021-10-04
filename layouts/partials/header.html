@@ -6,6 +6,7 @@
           {{ end }}
           {{ .Site.Title }}
         </a>
+        {{ if .IsHome }}
         <div class="navbar-nav flex-row flex-wrap justify-content-center">
             {{ with .Site.Menus.main }}
                 {{ $navbar_len := len . }}
@@ -19,6 +20,7 @@
                 {{ end }}
             {{ end }}
         </div>
+        {{ end }}
     </nav>
 </div>
 <hr>
