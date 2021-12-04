@@ -1,0 +1,35 @@
+{{ define "main" }}
+<div class="container">
+    <h1>{{ .Title }}</h1>
+    <section id="books">
+        {{ range .Pages }}
+              <div class="book">
+                <figure>
+                <a href="{{ .Permalink }}">
+                  <img src="{{ .Param "imageUrl" }}" loading="lazy" alt="{{ .Title }}"/>
+                </a>
+                </figure>
+                <h2>
+                  {{ if .Param "hasNotesOrHighlights" }}
+                    <a href="{{ .Permalink }}">
+                      {{ .Title }} 
+                    </a>
+                  {{ else }}
+                    {{ .Title }} 
+                  {{ end }}
+                </h2>
+                <small>
+                  Date read: {{ .Date.Format "2006-01-02" }} | Reading time: {{ math.Round (div .FuzzyWordCount 220.0)  }} min | Has notes: {{ .Param "hasNotes" }}
+                </small>
+                <p>
+                {{ .Param "review" }}
+                </p>
+                <p>
+                <a href="{{ .Permalink }}">Read my notes</a> or go to the
+                <a href="{{ .Param "goodreadsUrl" }}">Goodreads page</a>.
+                </p>
+              </div>
+        {{ end }}
+    </section>
+</div>
+{{ end }}
