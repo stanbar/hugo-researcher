@@ -48,38 +48,48 @@ $y-medium: 1.0rem;
     font-family: $font-family;
     line-height: 1.2;
 }
+
 .container {
     max-width: $max-width;
 }
+
 .navbar-brand {
     @extend %link-dark;
     font-size: 2rem;
 }
+
 .nav-link {
     @extend %link-default;
 }
+
+
 #content {
     a {
         @extend %link-default;
     }
+
     p {
         margin-bottom: $y-small;
     }
+
     h1, h2, h3, h4, h5, h6 {
         font-size: medium;
         font-weight: bold;
         margin: $y-medium 0 $y-small 0;
     }
+
     @for $i from 1 through 4 {
         h#{$i} {
             font-size: 1.2rem + 0.2 * (4 - $i);
         }
     }
+
     img {
         display: block;
         margin: $y-medium auto;
         max-width: 100%;
     }
+
     .avatar > img {
         border-radius: 50%;
         float: right;
@@ -87,6 +97,7 @@ $y-medium: 1.0rem;
         height: $avatar-size;
         width: $avatar-size;
     }
+
     ol {
         counter-reset: list;
         list-style: none;
@@ -102,9 +113,11 @@ $y-medium: 1.0rem;
             padding-right: .5em;
         }
     }
+
     .container > ol, .footnotes > ol {
         padding-left: 0;
     }
+
     ul {
         list-style: inside;
         padding-left: 2rem;
@@ -113,9 +126,11 @@ $y-medium: 1.0rem;
             margin-left: 1em;
         }
     }
+
     .container > ul, .footnotes > ul {
         padding-left: 0;
     }
+
     table {
         margin: $y-medium auto;
         width: 100%;
@@ -130,12 +145,14 @@ $y-medium: 1.0rem;
             background-color: #f8f8f8;
         }
     }
+
     blockquote {
         border-left: 4px solid;
         font-style: italic;
         margin: $y-medium 0;
         padding: 8px 8px;
     }
+
     code {
         color: $black;
         background-color: #f8f8f8;
@@ -143,16 +160,48 @@ $y-medium: 1.0rem;
         border-radius: 10%;
         padding: 0px 4px;
     }
+
     pre code {
         all: unset;
     }
+
     .highlight {
         margin: $y-medium auto;
         & > pre {
             padding: 8px 8px;
         }
     }
+
+    #books { 
+      display: block;
+      argin-bottom: 4em;
+    }
+
+    .book {
+      display: block;
+      margin: 0 0 8em 0;
+
+      figure {
+        display: block;
+        margin: 0;
+      }
+
+      a {
+        text-decoration: none; 
+        word-wrap: break-word; 
+      }
+
+      img {
+        float: left;
+        height: auto;
+        display: block;
+        max-width: 100%;
+        margin-right: 2em;
+      }
+    }
 }
+
+
 #footer {
     a {
         @extend %link-dark;
