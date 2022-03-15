@@ -1,7 +1,9 @@
 <div id="footer" class="mb-5">
     <hr>
     {{ if eq .Type "post" }}
-      {{ template "_internal/disqus.html" . }}
+      <div class="container">
+        {{ template "_internal/disqus.html" . }}
+      </div>
       <!-- {{ template "partials/utterances.html" . }} -->
     {{ end }}
     {{ if .Site.Params.socialIcons }}
