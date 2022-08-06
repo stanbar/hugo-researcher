@@ -1,6 +1,6 @@
 <div id="footer" class="mb-5">
-    <hr>
     {{ if eq .Type "post" }}
+    <hr>
       <div class="container">
         {{ template "_internal/disqus.html" . }}
       </div>
@@ -9,8 +9,17 @@
     <hr>
 
     <div class="container text-center">
-        {{ range $item := .Site.Params.socialIcons }}
-            <a href="{{ $item.url }}" class="{{ $item.icon }} fa-1x" title="{{ $item.title }}"></a>
+        {{ with .Site.Params.socialIcons }}
+          {{ $footer_len := len . }}
+          {{ range $i, $item := . }}
+            <a href="{{ $item.url }}" title="{{ $item.name }}">
+              <i class="{{ $item.icon }} fa-1x"></i>
+              {{ $item.name }}
+            </a>
+            {{ if ne (add $i 1) $footer_len }}
+                <span class="nav-item navbar-text mx-1">/</span>
+            {{ end }}
+          {{ end }}
         {{ end }}
     </div>
 
