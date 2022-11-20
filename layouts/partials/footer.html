@@ -24,10 +24,11 @@
     </div>
 
     {{ if .IsHome }}
-    {{ with .Site.Params.footer }}
-        <div class="container text-center">
-            <a href="{{ .url | absURL }}" title="{{ .text }}"><small>{{ .text }}</small></a>
-        </div>
+      {{ with .Site.Params.footer }}
+          <div class="container text-center">
+              <a href="{{ .url | absURL }}" title="{{ .text }}"><small>{{ .text }}</small></a>
+          </div>
+      {{ end }}
     {{ end }}
     {{ end }}
 </div>
