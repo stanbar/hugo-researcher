@@ -1,0 +1,14 @@
+{{ $path := .Get "path" }}
+{{ $filepath := printf "static/%s" $path }}
+{{ $files := readDir $filepath }}
+{{ $ext := default "-" (.Get "type" )}}
+
+<ul class="slideslist">
+  {{ range sort $files ".Name" "desc" }}
+    {{ if not .IsDir }}
+      <li>
+        <a class="slidesitem" href="{{ .Name }}">{{ .Name }}</a>
+      </li>
+    {{ end }}
+  {{ end }}
+</ul>
