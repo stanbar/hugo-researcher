@@ -28,6 +28,8 @@
         {{ template "_internal/google_analytics.html" . }}
     {{ end }}
 
+    {{ partial "plausible_head.html" . }}
+
     {{ if .Params.noindex }}
         <meta name="robots" content="noindex">
     {{ end }}
