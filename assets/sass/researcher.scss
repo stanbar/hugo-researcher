@@ -136,6 +136,8 @@ $y-medium: 1.0rem;
     table {
         margin: $y-medium auto;
         width: 100%;
+        display: block;
+        overflow-x: auto;
         & th {
             @extend %table-cell;
             font-weight: bold;
