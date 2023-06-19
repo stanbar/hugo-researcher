@@ -10,23 +10,23 @@
                 </a>
                 </figure>
                 <h2>
-                  {{ if .Param "hasNotesOrHighlights" }}
-                    <a href="{{ .Permalink }}">
-                      {{ .Title }} 
-                    </a>
-                  {{ else }}
+                  <a href="{{ .Permalink }}">
                     {{ .Title }} 
-                  {{ end }}
+                  </a>
                 </h2>
                 <small>
-                  Date read: {{ .Date.Format "2006-01-02" }} | Reading time: {{ math.Round (div .FuzzyWordCount 220.0)  }} min | Has notes: {{ .Param "hasNotes" }}
+                  Date read: {{ .Date.Format "2006-01-02" }}
                 </small>
                 <p>
-                {{ .Param "review" }}
+                {{ .Param "review" | safeHTML | truncate 200 }}
                 </p>
                 <p>
-                <a href="{{ .Permalink }}">Read my notes</a> or go to the
-                <a href="{{ .Param "goodreadsUrl" }}">Goodreads page</a>.
+                  {{ if .Param "hasNotes" }}
+                    <a href="{{ .Permalink }}">Read my notes</a> or go to the
+                    <a href="{{ .Param "goodreadsUrl" }}">Goodreads page</a>.
+                  {{ else }}
+                    Go to the <a href="{{ .Param " goodreadsUrl" }}">Goodreads page</a>.
+                  {{ end }}
                 </p>
               </div>
         {{ end }}
