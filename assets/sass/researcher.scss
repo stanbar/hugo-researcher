@@ -178,7 +178,7 @@ $y-medium: 1.0rem;
 
     #books { 
       display: block;
-      argin-bottom: 4em;
+      margin-bottom: 4em;
     }
 
     .book {
@@ -193,6 +193,10 @@ $y-medium: 1.0rem;
       a {
         text-decoration: none; 
         word-wrap: break-word; 
+      }
+
+      h2 {
+        font-size: 1.5em;
       }
 
       img {
