@@ -5,12 +5,12 @@
         {{ range .Pages.ByDate.Reverse }}
               <div class="book">
                 <figure>
-                <a href="{{ .Permalink }}">
-                  <img src="{{ .Param "imageUrl" }}" loading="lazy" alt="{{ .Title }}"/>
-                </a>
+                  <a href="{{ .Permalink }}">
+                    <img src="{{ .Param "imageUrl" }}" loading="lazy" alt="{{ .Title }}"/>
+                  </a>
                 </figure>
                 <h2>
-                  <a href="{{ .Permalink }}">
+                  <a href="{{ .Param "goodreadsUrl" }}">
                     {{ .Title }} 
                   </a>
                 </h2>
@@ -18,14 +18,17 @@
                   Date read: {{ .Date.Format "2006-01-02" }}
                 </small>
                 <p>
-                {{ .Param "review" | safeHTML | truncate 400 }}
+                  {{ if .Param "logline" }}
+                    {{ .Param "logline" | safeHTML | truncate 400 }}
+                  {{ else if .Param "review"}}
+                    {{ .Param "review" | safeHTML | truncate 400 }}
+                  {{ else }}
+                  {{ end }}
                 </p>
                 <p>
                   {{ if .Param "hasNotes" }}
-                    <a href="{{ .Permalink }}">Read my notes</a> or go to the
-                    <a href="{{ .Param "goodreadsUrl" }}">Goodreads page</a>.
+                    <a href="{{ .Permalink }}">Read my notes</a>
                   {{ else }}
-                    Go to the <a href="{{ .Param " goodreadsUrl" }}">Goodreads page</a>.
                   {{ end }}
                 </p>
               </div>
