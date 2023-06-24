@@ -181,8 +181,9 @@ $y-medium: 1.0rem;
     }
 
     .book {
-      display: block;
-      margin: 0 0 8em 0;
+      display: table;
+      width: 100%;
+      margin: 0 0 2em 0;
 
       figure {
         display: block;
@@ -194,16 +195,16 @@ $y-medium: 1.0rem;
         word-wrap: break-word; 
       }
 
-      h2 {
-        font-size: 1.5em;
-      }
-
       img {
         float: left;
-        height: auto;
+        height: 8em;
         display: block;
         max-width: 100%;
         margin-right: 2em;
+      }
+
+      h2 {
+        font-size: 1.5em;
       }
     }
 
