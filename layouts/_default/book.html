@@ -19,9 +19,9 @@
                 </small>
                 <p>
                   {{ if .Param "logline" }}
-                    {{ .Param "logline" | safeHTML | truncate 400 }}
+                    {{ .Param "logline" | safeHTML | truncate 390 }}
                   {{ else if .Param "review"}}
-                    {{ .Param "review" | safeHTML | truncate 400 }}
+                    {{ .Param "review" | safeHTML | truncate 390 }}
                   {{ else }}
                   {{ end }}
                 </p>
