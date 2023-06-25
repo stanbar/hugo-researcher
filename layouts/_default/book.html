@@ -1,38 +1,40 @@
 {{ define "main" }}
 <div class="container">
-    <h1>{{ .Title }}</h1>
-    <section id="books">
-        {{ range .Pages.ByDate.Reverse }}
-              <div class="book">
-                <figure>
-                  <a href="{{ .Permalink }}">
-                    <img src="{{ .Param "imageUrl" }}" loading="lazy" alt="{{ .Title }}"/>
-                  </a>
-                </figure>
-                <h2>
-                  <a href="{{ .Param "goodreadsUrl" }}">
-                    {{ .Title }} 
-                  </a>
-                </h2>
-                <small>
-                  Date read: {{ .Date.Format "2006-01-02" }}
-                </small>
-                <p>
-                  {{ if .Param "logline" }}
-                    {{ .Param "logline" | safeHTML | truncate 390 }}
-                  {{ else if .Param "review"}}
-                    {{ .Param "review" | safeHTML | truncate 390 }}
-                  {{ else }}
-                  {{ end }}
-                </p>
-                <p>
-                  {{ if .Param "hasNotesOrHighlights" }}
-                    <a href="{{ .Permalink }}">Read my notes</a>
-                  {{ else }}
-                  {{ end }}
-                </p>
-              </div>
+  <h1>Book notes</h1>
+  <p>List of books I've read, took notes and collected golden nuggets from.</p>
+  <p>I'd love a book recommendation, so if there's a book you think I should read please send it to me at <a href="/contact">contact</a>.</p>
+  <section id="books">
+    {{ range .Pages.ByDate.Reverse }}
+    <div class="book">
+      <figure>
+        <a href="{{ .Permalink }}">
+          <img src="{{ .Param "imageUrl" }}" loading="lazy" alt="{{ .Title }}" />
+        </a>
+      </figure>
+      <h2>
+        <a href="{{ .Param "goodreadsUrl" }}">
+          {{ .Title }}
+        </a>
+      </h2>
+      <small>
+        Date read: {{ .Date.Format "2006-01-02" }}
+      </small>
+      <p>
+        {{ if .Param "logline" }}
+        {{ .Param "logline" | safeHTML | truncate 390 }}
+        {{ else if .Param "review"}}
+        {{ .Param "review" | safeHTML | truncate 390 }}
+        {{ else }}
         {{ end }}
-    </section>
+      </p>
+      <p>
+        {{ if .Param "hasNotes" }}
+        <a href="{{ .Permalink }}">Read my notes</a>
+        {{ else }}
+        {{ end }}
+      </p>
+    </div>
+    {{ end }}
+  </section>
 </div>
 {{ end }}
