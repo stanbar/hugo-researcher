@@ -27,7 +27,7 @@
     {{- end -}}
 
     {{ if .Params.og_image }}
-        <meta property="og:image" content="{{ .Params.og_image }}">
+        <meta property="og:image" content="http://stan.bar{{ .Site.Params.og_image | relURL }}">
     {{ end }}
 
     {{ if .Params.noindex -}}
