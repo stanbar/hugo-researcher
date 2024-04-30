@@ -26,6 +26,10 @@
         {{- partial "googleanalytics.html" . -}}
     {{- end -}}
 
+    {{ if .Params.og_image }}
+        <meta property="og:image" content="{{ .Params.og_image }}">
+    {{ end }}
+
     {{ if .Params.noindex -}}
     <meta name="robots" content="noindex">
     {{ end -}}
