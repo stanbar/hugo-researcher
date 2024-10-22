@@ -1,19 +1,25 @@
 <div id="footer" class="mb-5">
-    {{ if eq .Type "post" }}
     <hr>
+    {{ if eq .Type "post" }}
       <div class="container">
         {{ template "_internal/disqus.html" . }}
       </div>
       <!-- {{ template "partials/utterances.html" . }} -->
     {{ end }}
-    {{ if .Site.Params.socialIcons }}
-      <hr>
-      <div class="container text-center">
-          {{ range $item := .Site.Params.socialIcons }}
-              <a href="{{ $item.url }}" class="{{ $item.icon }} fa-1x" title="{{ $item.title }}"></a>
+    <div class="container text-center">
+      {{ with .Site.Params.socialIcons }}
+        {{ $footer_len := len . }}
+        {{ range $i, $item := . }}
+          <a href="{{ $item.url }}" title="{{ $item.name }}">
+            <i class="{{ $item.icon }} fa-1x"></i>
+            {{ $item.name }}
+          </a>
+          {{ if ne (add $i 1) $footer_len }}
+              <span class="nav-item navbar-text mx-1">/</span>
           {{ end }}
-      </div>
-    {{ end }}
+        {{ end }}
+      {{ end }}
+  </div>
     {{ with .Site.Params.footer }}
         <div class="container text-center">
             <a href="{{ .url | absURL }}" title="{{ .text }}" {{ if .blank }}target="_blank"{{ end }}><small>{{ .text }}</small></a>
