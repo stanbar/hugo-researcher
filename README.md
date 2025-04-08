@@ -27,6 +27,20 @@ A self-explanatory configuration file is present in
 [exampleSite/config.toml](https://github.com/ojroques/hugo-researcher/blob/master/exampleSite/config.toml),
 along the files of a demo website.
 
+### Dark Mode
+The theme supports dark mode through:
+- Automatic detection of system preferences
+- A manual toggle button in the navigation bar
+- Persistence of user preference via localStorage
+
+To customize dark mode colors, update your `config.toml`:
+```toml
+[params.style]
+  colorBlack = "#222222"    # Main text color in light mode
+  colorRed = "#dc3545"      # Accent color in light mode
+  colorRedDark = "#ff6b6b"  # Accent color in dark mode
+```
+
 ## KaTeX
 You can enable [KaTeX](https://katex.org/) (math typesetting) by including
 `math: true` in your content files. Or you can enable it globally by setting

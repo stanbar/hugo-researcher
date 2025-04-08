@@ -40,4 +40,73 @@
     
     <meta property="og:url" content="{{ .Page.Permalink }}">
     <meta property="og:type" content="website" />
+    
+    <!-- Theme toggle script -->
+    <script>
+        // Check for saved theme preference or system preference
+        function getThemePreference() {
+            const storedTheme = localStorage.getItem('theme');
+            if (storedTheme) {
+                return storedTheme;
+            }
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        
+        // Apply theme to document root only
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-mode');
+                document.documentElement.classList.remove('light-mode');
+            } else {
+                document.documentElement.classList.remove('dark-mode');
+                document.documentElement.classList.add('light-mode');
+            }
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+        
+        // Apply theme immediately to prevent flash
+        const currentTheme = getThemePreference();
+        applyTheme(currentTheme);
+        
+        // Set up theme toggle after DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            if (themeToggle) {
+                // Update button based on current theme
+                updateToggleIcon(currentTheme);
+                
+                // Add click handler
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                    
+                    console.log('Toggling from', currentTheme, 'to', newTheme);
+                    
+                    // Save preference
+                    localStorage.setItem('theme', newTheme);
+                    
+                    // Apply theme
+                    applyTheme(newTheme);
+                    
+                    // Update toggle icon
+                    updateToggleIcon(newTheme);
+                });
+            }
+        });
+        
+        function updateToggleIcon(theme) {
+            const toggleIcon = document.querySelector('.theme-toggle-icon');
+            if (toggleIcon) {
+                // Show sun in dark mode (for switching to light)
+                // Show moon in light mode (for switching to dark)
+                toggleIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+                
+                // Update the button title
+                const themeToggle = document.getElementById('theme-toggle');
+                if (themeToggle) {
+                    themeToggle.title = theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
+                }
+            }
+        }
+    </script>
 </head>

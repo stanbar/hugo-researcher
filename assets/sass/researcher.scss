@@ -2,9 +2,46 @@
 $max-width: {{ .Param "style.pageWidth" | default "750px;" }};
 $avatar-size: {{ .Param "style.avatarSize" | default "90px;" }};
 
-// Colors
-$black: {{ .Param "style.colorBlack" | default "#222222" }};
-$red: {{ .Param "style.colorRed" | default "#dc3545" }};
+// Define CSS Variables - Light mode is default 
+:root {
+  // Light mode colors (default)
+  --color-bg: #ffffff;
+  --color-text: {{ .Param "style.colorBlack" | default "#222222" }};
+  --color-accent: {{ .Param "style.colorRed" | default "#dc3545" }};
+  --color-border: #cccccc;
+  --color-code-bg: #f8f8f8;
+  --color-table-alt: #f8f8f8;
+}
+
+// Dark mode via system preference, only applies if .dark-mode is NOT present
+// This allows the manual toggle to override system preference
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-mode) {
+    --color-bg: #121212;
+    --color-text: #e0e0e0;
+    --color-accent: {{ .Param "style.colorRedDark" | default "#ff6b6b" }};
+    --color-border: #555555;
+    --color-code-bg: #2d2d2d;
+    --color-table-alt: #2d2d2d;
+  }
+}
+
+// Dark mode applied via class (from toggle)
+.dark-mode {
+  --color-bg: #121212;
+  --color-text: #e0e0e0;
+  --color-accent: {{ .Param "style.colorRedDark" | default "#ff6b6b" }};
+  --color-border: #555555;
+  --color-code-bg: #2d2d2d;
+  --color-table-alt: #2d2d2d;
+}
+
+// Replaced color variables
+$black: var(--color-text);
+$red: var(--color-accent);
+$border-color: var(--color-border);
+$code-bg: var(--color-code-bg);
+$table-alt: var(--color-table-alt);
 
 // Font
 $font-family: {{ .Param "style.fontFamily" | default "Inconsolata" }};
@@ -38,7 +75,7 @@ $y-medium: 1.0rem;
     }
 }
 %table-cell {
-    border: 1px solid #cccccc;
+    border: 1px solid $border-color;
     padding: 6px 12px;
     text-align: left;
 }
@@ -50,6 +87,12 @@ $y-medium: 1.0rem;
     font-size: $font-size;
     line-height: 1.2;
 }
+
+body {
+    background-color: var(--color-bg);
+    transition: background-color 0.3s ease;
+}
+
 .container {
     max-width: $max-width;
 }
@@ -121,6 +164,8 @@ $y-medium: 1.0rem;
     table {
         margin: $y-medium auto;
         width: 100%;
+        display: block;
+        overflow-x: auto;
         & th {
             @extend %table-cell;
             font-weight: bold;
@@ -129,21 +174,21 @@ $y-medium: 1.0rem;
             @extend %table-cell;
         }
         & tr:nth-child(2n) {
-            background-color: #f8f8f8;
+            background-color: $table-alt;
         }
     }
     blockquote {
         border-left: 4px solid;
         font-style: italic;
         margin: $y-medium 0;
-        padding: 8px 8px;
+        padding: 8px;
     }
     code {
         color: $black;
-        background-color: #f8f8f8;
-        border: 1px solid #cccccc;
+        background-color: $code-bg;
+        border: 1px solid $border-color;
         border-radius: 10%;
-        padding: 0px 4px;
+        padding: 0 4px;
     }
     pre code {
         all: unset;
@@ -151,7 +196,7 @@ $y-medium: 1.0rem;
     .highlight {
         margin: $y-medium auto;
         & > pre {
-            padding: 8px 8px;
+            padding: 8px;
         }
     }
 
@@ -197,4 +242,28 @@ $y-medium: 1.0rem;
     a {
         @extend %link-dark;
     }
+}
+
+// Dark mode toggle styles
+.theme-toggle {
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  margin-left: 1rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border: 1px solid var(--color-border);
+  background-color: transparent;
+  color: var(--color-text);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: var(--color-border);
+  }
+  
+  .icon {
+    width: 1em;
+    height: 1em;
+  }
 }

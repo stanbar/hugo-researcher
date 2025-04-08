@@ -21,6 +21,7 @@ googleAnalytics = ""  # add your tracking id
     avatarSize = "90px"
     colorBlack = "#222222"
     colorRed = "#dc3545"
+    colorRedDark = "#ff6b6b"  # accent color for dark mode
   [[params.socialIcons]]
     icon = "fab fa-twitter"
     title = "Twitter"
