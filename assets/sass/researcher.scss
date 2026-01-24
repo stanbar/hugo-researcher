@@ -161,6 +161,13 @@ body {
     .container > ul, .footnotes > ul {
         padding-left: 0;
     }
+    .footnotes {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        & a {
+            word-break: break-word;
+        }
+    }
     table {
         margin: $y-medium auto;
         width: 100%;
